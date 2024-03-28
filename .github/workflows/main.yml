@@ -6,7 +6,7 @@ env:
   device: davinci
   clang_version: r487747c
   defconfig: |
-    davinci_defconfig
+    vendor/davinci_defconfig
   kernel_patch: |
     support-umount-modules-kernel.patch
   kernelsu_patch: |
