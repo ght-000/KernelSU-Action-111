@@ -15,15 +15,11 @@ index 21fd423b1..6f6a0adf4 100644
  	}
  }
  
-+static inline int check_mnt(struct mount *mnt)
+-static inline int check_mnt(struct mount *mnt)
++inline int check_mnt(struct mount *mnt)
  {
  	return mnt->mnt_ns == current->nsproxy->mnt_ns;
  }
- 
-+void mntput_no_expire(struct mount *mnt)
- {
- 	rcu_read_lock();
- 	if (likely(READ_ONCE(mnt->mnt_ns))) {
 @@ -1689,7 +1689,7 @@ void __detach_mounts(struct dentry *dentry)
  /* 
   * Is the caller allowed to modify his namespace?
