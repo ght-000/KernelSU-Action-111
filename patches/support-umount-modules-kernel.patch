@@ -15,29 +15,15 @@ index 21fd423b1..6f6a0adf4 100644
  	}
  }
  
--static inline int check_mnt(struct mount *mnt)
-+inline int check_mnt(struct mount *mnt)
++static inline int check_mnt(struct mount *mnt)
  {
  	return mnt->mnt_ns == current->nsproxy->mnt_ns;
  }
-@@ -1170,7 +1170,7 @@ void flush_delayed_mntput_wait(void)
- 	flush_delayed_work(&delayed_mntput_work);
- }
  
--static void mntput_no_expire(struct mount *mnt)
 +void mntput_no_expire(struct mount *mnt)
  {
  	rcu_read_lock();
  	if (likely(READ_ONCE(mnt->mnt_ns))) {
-@@ -1550,7 +1550,7 @@ static void umount_tree(struct mount *mnt, enum umount_tree_flags how)
- 
- static void shrink_submounts(struct mount *mnt);
- 
--static int do_umount(struct mount *mnt, int flags)
-+int do_umount(struct mount *mnt, int flags)
- {
- 	struct super_block *sb = mnt->mnt.mnt_sb;
- 	int retval;
 @@ -1689,7 +1689,7 @@ void __detach_mounts(struct dentry *dentry)
  /* 
   * Is the caller allowed to modify his namespace?
